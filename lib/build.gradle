@@ -1,0 +1,66 @@
+plugins
+{
+  id 'com.android.library'
+  id 'kotlin-android'
+}
+
+android
+{
+  compileSdkVersion 30
+  buildToolsVersion "30.0.2"
+
+  defaultConfig
+  {
+    minSdkVersion 21
+    targetSdkVersion 30
+
+    versionCode 1
+    versionName "1.0"
+
+    sourceSets
+    {
+      main.java.srcDirs += "src/main/kotlin"
+      main.java.srcDirs += "src/main/apollo-api"
+      main.java.srcDirs += "src/main/apollo-http-cache"
+      main.java.srcDirs += "src/main/apollo-http-cache-api"
+    }
+
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    consumerProguardFiles "consumer-rules.pro"
+  }
+
+  buildTypes
+  {
+    release
+    {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  compileOptions
+  {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  kotlinOptions
+  {
+    jvmTarget = '1.8'
+  }
+}
+
+dependencies
+{
+  //kotlin
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+  //okhttp
+  implementation "com.squareup.okhttp3:okhttp:3.14.9"
+
+  //Timber
+  implementation "com.jakewharton.timber:timber:4.7.1"
+
+  androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+  androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
