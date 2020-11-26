@@ -20,11 +20,11 @@ import static com.apollographql.apollo.cache.http.Utils.strip;
 import static com.apollographql.apollo.cache.http.Utils.unsatisfiableCacheRequest;
 import static com.apollographql.apollo.cache.http.Utils.withServedDateHeader;
 
-final class HttpCacheInterceptor implements Interceptor {
-  private final ApolloHttpCache cache;
-  private final ApolloLogger logger;
+public class HttpCacheInterceptor implements Interceptor {
+  protected final ApolloHttpCache cache;
+  protected final ApolloLogger logger;
 
-  HttpCacheInterceptor(ApolloHttpCache cache, ApolloLogger logger) {
+  public HttpCacheInterceptor(ApolloHttpCache cache, ApolloLogger logger) {
     this.cache = checkNotNull(cache, "cache == null");
     this.logger = checkNotNull(logger, "logger == null");
   }
