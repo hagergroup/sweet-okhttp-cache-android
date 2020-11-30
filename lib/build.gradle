@@ -152,7 +152,7 @@ afterEvaluate {
         from components.release
 
         groupId = "com.hagergroup"
-        artifactId = "sweet-okhtt-cache"
+        artifactId = "sweet-okhttp-cache"
         version = android.defaultConfig.versionName
 
         artifact androidSourcesJar
