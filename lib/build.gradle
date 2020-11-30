@@ -97,8 +97,8 @@ dependencies
 
 bintray
 {
-  user = properties.containsKey('bintrayUsername') ? property('bintrayUsername') : ''
-  key = properties.containsKey('bintrayKey') ? property('bintrayKey') : ''
+  user = property('bintrayUsername') != "" ? property('bintrayUsername') : ''
+  key = property('bintrayKey') != "" ? property('bintrayKey') : ''
 
   pkg
   {
