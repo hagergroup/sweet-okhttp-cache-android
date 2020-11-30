@@ -1,4 +1,5 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://dev.azure.com/hagerdigitalfactory/Digital%20Factory%20Documentation/_apis/build/status/sweet-okhttp-cache-android/sweet-okhttp-cache-android-dev?branchName=okhttp-cache)](https://dev.azure.com/hagerdigitalfactory/Digital%20Factory%20Documentation/_build/latest?definitionId=115&branchName=okhttp-cache)  [ ![Download](https://api.bintray.com/packages/hagergroup/Maven/sweet-okhttp-cache/images/download.svg) ](https://bintray.com/hagergroup/Maven/sweet-okhttp-cache/_latestVersion)
+
 
 # Sweet okhttp cache Android
 
