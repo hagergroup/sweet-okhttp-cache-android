@@ -23,8 +23,11 @@
 package com.hagergroup.sweetokhttpcache.api
 
 import com.apollographql.apollo.api.cache.http.HttpCachePolicy
+import okhttp3.OkHttpClient
 
 /**
+ * Extension of the [HttpCachePolicy] object in order to add new default http cache policies
+ *
  * @author Ludovic Roland
  * @since 2020.11.27
  */
@@ -32,7 +35,7 @@ object SweetHttpCachePolicy
 {
 
   /**
-   * Signals the apollo client to delete the http cache.
+   * Signals the [OkHttpClient] to delete the http cache.
    */
   @JvmField
   val DELETE = HttpCachePolicy.ExpirePolicy(HttpCachePolicy.FetchStrategy.CACHE_ONLY).expireAfterRead()

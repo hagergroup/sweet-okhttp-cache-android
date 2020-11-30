@@ -32,6 +32,9 @@ import okhttp3.Request
 import okhttp3.Response
 
 /**
+ * Extension for the [HttpCacheInterceptor] class that add the possibility to intercept
+ * the clean-up cache headers.
+ *
  * @author Ludovic Roland
  * @since 2020.11.27
  */
@@ -83,8 +86,9 @@ class SweetHttpCacheInterceptor(cache: SweetApolloHttpCache, logger: ApolloLogge
   @Throws(NumberFormatException::class)
   private fun cleanUpCache(request: Request)
   {
-    val timeout = request.header(SweetHttpCache.CACHE_CLEANER_POLICY_TIME_OUT)?.toLong() ?: 0
-    (cache as? SweetHttpCache)?.clear(timeout)
+    request.header(SweetHttpCache.CACHE_CLEANER_POLICY_TIME_OUT)?.toLong()?.let {
+      (cache as? SweetHttpCache)?.clear(it)
+    }
   }
 
 }

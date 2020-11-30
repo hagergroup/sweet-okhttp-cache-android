@@ -29,6 +29,9 @@ import okhttp3.Interceptor
 import okhttp3.Response
 
 /**
+ * Intercepts the request in order create the cache key and decorate the https requests
+ * with the correct header values.
+ *
  * @author Ludovic Roland
  * @since 2020.08.20
  */

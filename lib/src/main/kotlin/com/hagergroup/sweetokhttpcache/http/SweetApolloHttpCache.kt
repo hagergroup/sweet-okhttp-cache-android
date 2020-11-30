@@ -29,6 +29,11 @@ import okhttp3.Interceptor
 import java.io.IOException
 
 /**
+ * Extends the [ApolloHttpCache] class in order to override the [cacheStore] attribute
+ * and the[ApolloHttpCache.interceptor] method with our own [Interceptor].
+ *
+ * Implements also the [SweetHttpCache.clear] method.
+ *
  * @author Ludovic Roland
  * @since 2020.11.27
  */

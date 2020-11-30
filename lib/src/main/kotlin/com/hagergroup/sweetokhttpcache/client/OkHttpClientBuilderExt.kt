@@ -30,6 +30,8 @@ import okhttp3.OkHttpClient
 import java.io.File
 
 /**
+ * Extension for the [OkHttpClient.Builder] class in order to automatically add the cache system
+ *
  * @author Ludovic Roland
  * @since 2020.09.08
  */

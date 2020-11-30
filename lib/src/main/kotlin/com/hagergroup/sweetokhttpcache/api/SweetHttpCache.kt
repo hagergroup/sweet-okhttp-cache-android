@@ -25,6 +25,8 @@ package com.hagergroup.sweetokhttpcache.api
 import com.apollographql.apollo.api.cache.http.HttpCache
 
 /**
+ * Extension of the [HttpCache] interface in order to add some http request / response cache possibilities.
+ *
  * @author Ludovic Roland
  * @since 2020.11.27
  */
@@ -36,34 +38,34 @@ interface SweetHttpCache
   {
 
     /**
-     *
+     * Identifies the cache policy to apply to the request
      */
     const val CACHE_POLICY_ID = "CachePolicyId"
 
     /**
-     *
+     * Identifies the clean-up policy to apply to the request
      */
     const val CACHE_CLEANER_POLICY_ID = "CacheCleanerPolicyId"
 
     /**
-     *
+     * Clean-up all flag http header
      */
     const val CACHE_CLEANER_POLICY_CLEAN_UP_ALL = "CacheCleanerPolicyCleanUpAll"
 
     /**
-     *
+     * Clean-up flag http header
      */
     const val CACHE_CLEANER_POLICY_CLEAN_UP = "CacheCleanerPolicyCleanUp"
 
     /**
-     *
+     * Clean-up with timeout flag http header
      */
     const val CACHE_CLEANER_POLICY_TIME_OUT = "CacheCleanerPolicyTimeOut"
 
   }
 
   /**
-   * Clear cached http responses
+   * Clear timeout cached http responses
    */
   fun clear(timeout: Long)
 

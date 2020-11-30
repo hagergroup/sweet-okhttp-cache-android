@@ -28,12 +28,35 @@ import java.io.File
 import java.io.IOException
 
 /**
+ * Extension for the [DiskLruHttpCacheStore] class that implements the [SweetHttpCacheStore.delete] methods and override
+ * the [SweetHttpCacheStore.delete] original implementation in order to delete only cached files from the library.
+ *
  * @author Ludovic Roland
  * @since 2020.11.27
  */
 class SweetDiskLruHttpCacheStore(directory: File, maxSize: Long)
   : DiskLruHttpCacheStore(directory, maxSize), SweetHttpCacheStore
 {
+
+  @Throws(IOException::class)
+  override fun delete()
+  {
+    cacheLock.writeLock().lock()
+
+    try
+    {
+      cache.directory.listFiles()?.forEach { file ->
+        if (file?.name?.startsWith("sweet-") == true)
+        {
+          cache.remove(file.name.replaceFirst("[.][^.]+$".toRegex(), ""))
+        }
+      }
+    }
+    finally
+    {
+      cacheLock.writeLock().unlock()
+    }
+  }
 
   @Throws(IOException::class)
   override fun delete(timeout: Long)

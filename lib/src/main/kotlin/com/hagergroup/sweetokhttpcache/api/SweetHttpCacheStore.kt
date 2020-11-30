@@ -26,6 +26,9 @@ import com.apollographql.apollo.api.cache.http.HttpCacheStore
 import java.io.IOException
 
 /**
+ * Extension of the [HttpCacheStore] interface, this new interface extends the possibility of the original one,
+ * allowing to delete only timeout files from the cache.
+ *
  * @author Ludovic Roland
  * @since 2020.11.27
  */
@@ -34,8 +37,8 @@ interface SweetHttpCacheStore
 {
 
   /**
-   * Closes the cache and deletes all of its stored values. This will delete all files in the cache directory including
-   * files that weren't created by the cache.
+   * Closes the cache and deletes all of its timeout stored values. This will delete only files in the cache directory that
+   * were created by the cache.
    */
   @Throws(IOException::class)
   fun delete(timeout: Long)
