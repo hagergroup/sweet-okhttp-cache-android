@@ -8,7 +8,7 @@ plugins
   id "maven-publish"
 }
 
-def lib_version_name = '2.4.5'
+def lib_version_name = '2.4.5.1'
 
 android
 {
