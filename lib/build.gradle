@@ -8,8 +8,6 @@ plugins
   id "maven-publish"
 }
 
-def lib_version_name = '2.4.5.1'
-
 android
 {
   compileSdkVersion 30
@@ -21,7 +19,7 @@ android
     targetSdkVersion 30
 
     versionCode 1
-    versionName lib_version_name
+    versionName "2.4.5.1"
 
     sourceSets
     {
@@ -115,11 +113,32 @@ bintray
 
     version
     {
-      name = lib_version_name
+      name = android.defaultConfig.versionName
       released = new Date()
-      vcsTag = lib_version_name
+      vcsTag = android.defaultConfig.versionName
     }
   }
+}
+
+task androidJavadocs(type: Javadoc) {
+  source = android.sourceSets.main.java.srcDirs
+  classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+  android.libraryVariants.all { variant ->
+    if (variant.name == 'release') {
+      owner.classpath += variant.javaCompileProvider.get().classpath
+    }
+  }
+  exclude '**/R.html', '**/R.*.html', '**/index.html'
+}
+
+task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+  archiveClassifier.set('javadoc')
+  from androidJavadocs.destinationDir
+}
+
+task androidSourcesJar(type: Jar) {
+  archiveClassifier.set('sources')
+  from android.sourceSets.main.java.srcDirs
 }
 
 afterEvaluate {
@@ -130,9 +149,13 @@ afterEvaluate {
       release(MavenPublication)
       {
         from components.release
+
         groupId = "com.hagergroup"
         artifactId = "sweet-okhtt-cache"
-        version = lib_version_name
+        version = android.defaultConfig.versionName
+
+        artifact androidSourcesJar
+        artifact androidJavadocsJar
       }
     }
   }
