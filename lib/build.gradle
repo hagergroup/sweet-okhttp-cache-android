@@ -121,6 +121,7 @@ bintray
 }
 
 task androidJavadocs(type: Javadoc) {
+  enabled = false
   source = android.sourceSets.main.java.srcDirs
   classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
   android.libraryVariants.all { variant ->
