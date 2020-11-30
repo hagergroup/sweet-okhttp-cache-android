@@ -26,6 +26,7 @@ import com.apollographql.apollo.api.cache.http.HttpCachePolicy
 import com.hagergroup.sweetokhttpcache.SweetOkHttpCacheInterceptor
 import com.hagergroup.sweetokhttpcache.http.SweetApolloHttpCache
 import com.hagergroup.sweetokhttpcache.http.SweetDiskLruHttpCacheStore
+import com.hagergroup.sweetokhttpcache.log.SweetLogger
 import okhttp3.OkHttpClient
 import java.io.File
 
@@ -38,7 +39,7 @@ import java.io.File
 fun OkHttpClient.Builder.addSweetOkHttpCache(cachePolicies: Map<String, HttpCachePolicy.Policy>, directory: File, cacheSize: Long = 1024 * 1024): OkHttpClient.Builder
 {
   addInterceptor(SweetOkHttpCacheInterceptor(cachePolicies))
-  addInterceptor(SweetApolloHttpCache(SweetDiskLruHttpCacheStore(directory, cacheSize)).interceptor())
+  addInterceptor(SweetApolloHttpCache(SweetDiskLruHttpCacheStore(directory, cacheSize), SweetLogger()).interceptor())
 
   return this
 }

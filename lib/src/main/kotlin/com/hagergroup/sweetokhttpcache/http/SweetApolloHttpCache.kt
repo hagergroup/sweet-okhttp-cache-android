@@ -22,6 +22,7 @@
 
 package com.hagergroup.sweetokhttpcache.http
 
+import com.apollographql.apollo.Logger
 import com.apollographql.apollo.cache.http.ApolloHttpCache
 import com.hagergroup.sweetokhttpcache.api.SweetHttpCache
 import com.hagergroup.sweetokhttpcache.api.SweetHttpCacheStore
@@ -37,8 +38,8 @@ import java.io.IOException
  * @author Ludovic Roland
  * @since 2020.11.27
  */
-class SweetApolloHttpCache(cacheStore: SweetHttpCacheStore)
-  : ApolloHttpCache(cacheStore), SweetHttpCache
+class SweetApolloHttpCache(cacheStore: SweetHttpCacheStore, logger: Logger)
+  : ApolloHttpCache(cacheStore, logger), SweetHttpCache
 {
 
   override fun interceptor(): Interceptor
