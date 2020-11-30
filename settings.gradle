@@ -1,2 +1,3 @@
-include ':lib'
 rootProject.name = "sweet-okhttp-cache"
+
+include ':lib'

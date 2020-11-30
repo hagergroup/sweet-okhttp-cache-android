@@ -3,7 +3,12 @@ plugins
   id "com.android.library"
   id "kotlin-android"
   id "kotlin-kapt"
+
+  id "com.jfrog.bintray"
+  id "maven-publish"
 }
+
+def lib_version_name = '2.4.5'
 
 android
 {
@@ -16,7 +21,7 @@ android
     targetSdkVersion 30
 
     versionCode 1
-    versionName "2.4.5"
+    versionName lib_version_name
 
     sourceSets
     {
@@ -88,4 +93,47 @@ dependencies
 
   //Test - coroutines
   androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.0"
+}
+
+bintray
+{
+  user = System.getenv('bintrayUsername')
+  key = System.getenv('bintrayKey')
+
+  pkg
+  {
+    repo = 'Maven'
+    name = 'sweet-okhttp-cache'
+    userOrg = 'hagergroup'
+    licenses = ['MIT']
+    vcsUrl = 'https://github.com/hagergroup/sweet-okhttp-cache-android.git'
+
+    publications = ['release']
+
+    publish = true
+    override = true
+
+    version
+    {
+      name = lib_version_name
+      released = new Date()
+      vcsTag = lib_version_name
+    }
+  }
+}
+
+afterEvaluate {
+  publishing
+  {
+    publications
+    {
+      release(MavenPublication)
+      {
+        from components.release
+        groupId = "com.hagergroup"
+        artifactId = "sweet-okhtt-cache"
+        version = lib_version_name
+      }
+    }
+  }
 }
