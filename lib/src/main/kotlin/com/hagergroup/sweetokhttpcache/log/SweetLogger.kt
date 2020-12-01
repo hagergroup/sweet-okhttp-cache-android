@@ -13,7 +13,7 @@ class SweetLogger
 
   override fun log(priority: Int, message: String, t: Throwable?, vararg args: Any)
   {
-    Timber.log(priority, t, message, args)
+    Timber.log(priority, t, message, *args)
   }
 
 }
